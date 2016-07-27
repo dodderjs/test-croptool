@@ -1,0 +1,26 @@
+{
+  "name": "test-croptool",
+  "version": "1.0.0",
+  "description": "Testing croptool for good",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dodderjs/test-croptool.git"
+  },
+  "keywords": [
+    "croptool",
+    "test"
+  ],
+  "author": "dodderjs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dodderjs/test-croptool/issues"
+  },
+  "homepage": "https://github.com/dodderjs/test-croptool#readme",
+  "dependencies": {
+    "serve": "^1.4.0"
+  }
+}
