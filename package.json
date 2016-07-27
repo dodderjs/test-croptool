@@ -20,7 +20,5 @@
     "url": "https://github.com/dodderjs/test-croptool/issues"
   },
   "homepage": "https://github.com/dodderjs/test-croptool#readme",
-  "dependencies": {
-    "serve": "^1.4.0"
-  }
+  "dependencies": {}
 }
