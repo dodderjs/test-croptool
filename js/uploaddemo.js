@@ -35,20 +35,20 @@ define([
 	},
 
 	uploader.prototype.onFileRead = function (reader, file, e) {
-		var result = e.target.result;
+		var result = e.target.result, img = null;
 
-		if (!this.$img.length) {
+		if (this.croptool) {
+			this.croptool.destroy();
+		}
+
+		img = this.container.find('#' + this.$input.attr('data-bound'));
+		if (!img.length) {
 			var image = new Image();
 			image.id = this.$input.attr('data-bound');
 			this.container.append($(image));
 			this.$img = this.container.find('#' + this.$input.attr('data-bound'));
-			this.$img = this.container.find('#' + this.$input.attr('data-bound'));
 		}
 		this.$img.attr('src', result);
-		this.$preview.find('img').attr('src', result);
-		if (this.croptool) {
-			delete this.croptool;
-		}
 		this.croptool = new cropdemo(this.container);
 	}
 

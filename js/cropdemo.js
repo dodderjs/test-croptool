@@ -14,7 +14,7 @@ define([
 					'</div>'+
 				'</div>');
 			this.$img = this.container.find('img').eq(0);
-			this.$preview.find('img').attr('src', this.$img.attr('src'))
+			this.$preview.find('img').attr('src', this.$img.attr('src'));
 
 			this.jcrop_api = jcrop(this.$img, {
 				boxWidth: 1280, 
@@ -56,6 +56,10 @@ define([
 				marginTop: '-' + Math.round(ry * c.y) + 'px'
 			});
 		}
+	}
+
+	CropTool.prototype.destroy = function () {
+		this.jcrop_api.destroy();
 	}
 
 	return CropTool;
