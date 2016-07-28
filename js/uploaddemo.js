@@ -37,6 +37,7 @@ define([
 	uploader.prototype.onFileRead = function (reader, file, e) {
 		var result = e.target.result, img = null;
 
+
 		if (this.croptool) {
 			this.croptool.destroy();
 		}
@@ -49,6 +50,7 @@ define([
 			this.$img = this.container.find('#' + this.$input.attr('data-bound'));
 		}
 		this.$img.attr('src', result);
+
 		this.croptool = new cropdemo(this.container);
 	}
 

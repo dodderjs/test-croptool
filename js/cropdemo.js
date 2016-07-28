@@ -4,7 +4,19 @@ define([
 	'jcrop'
 ], function ($, jcrop) {
 
-	var CropTool = function (container) {
+	var CropTool = function (container, options) {
+			this.options = options || 
+								{
+									boxWidth: 1280, 
+									boxHeight: 426,
+									//minSize: [2560, 852],
+									minSize: [ 1280, 426 ],
+									setSelect: [0,0,1280,426],
+									onChange: this.updatePreview.bind(this),
+									onSelect: this.updatePreview.bind(this),
+									aspectRatio: 640 / 213
+								};
+
 			this.container = $(container);
 			
 			this.$preview = $(
@@ -16,18 +28,15 @@ define([
 			this.$img = this.container.find('img').eq(0);
 			this.$preview.find('img').attr('src', this.$img.attr('src'));
 
-			this.jcrop_api = jcrop(this.$img, {
-				boxWidth: 1280, 
-				boxHeight: 426,
-				//minSize: [2560, 852],
-				minSize: [ 1280, 426 ],
-				setSelect: [0,0,1280,426],
-				onChange: this.updatePreview.bind(this),
-				onSelect: this.updatePreview.bind(this),
-				aspectRatio: 640 / 213
-			});
+			if (this.options.minSize && this.$img.width() <  this.options.minSize[0] || 
+				this.options.minSize&& this.$img.height() < this.options.minSize[1]) {
+				return this;
+			}
+
+			this.jcrop_api = jcrop(this.$img, this.options);
 			this.bound();
 			this.updatePreview({ x: 0, y: 0, w: 1280, h: 426 });
+			return this;
 		}
 
 	CropTool.prototype.bound = function () {
@@ -59,7 +68,7 @@ define([
 	}
 
 	CropTool.prototype.destroy = function () {
-		this.jcrop_api.destroy();
+		this.jcrop_api && this.jcrop_api.destroy();
 	}
 
 	return CropTool;
